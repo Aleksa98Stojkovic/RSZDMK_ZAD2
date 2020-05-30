@@ -211,7 +211,12 @@ int main()
 					{
 						while(!usartAvailable());
 						_delay_ms(100);
-						pin[i++] = usartGetChar();
+						
+						if(usartAvailable() != 1)
+							pin[i++] = '-';
+						else
+							pin[i++] = usartGetChar();
+						
 						usartPutChar('*');
 						
 						if(proveri_pin(pin))
@@ -240,6 +245,8 @@ int main()
 				usartPutString("\nNeispravan format pina\n");
 				isprazni_bafer();
 			}
+			
+			isprazni_bafer();
 		}
 		
 	};
